@@ -22,9 +22,8 @@ export default function NavBar() {
                         <MenuIcon open={false} />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        News
+                        ERP System
                     </Typography>
-                    <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
         </Box>

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,6 +19,7 @@
     "@mui/material": "^5.0.2",
     "@mui/x-data-grid": "^4.0.1",
     "@types/react-data-grid": "^4.0.6",
+    "axios": "^0.22.0",
     "create-emotion-server": "^11.0.0",
     "next": "11.1.2",
     "react": "17.0.2",
