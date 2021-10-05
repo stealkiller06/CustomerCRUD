@@ -70,7 +70,7 @@ const AddCustomer = (props: AddCustomerProps) => {
                 <Box sx={style}>
                     <form onSubmit={(e) => { e.preventDefault(); save() }}>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Add New Customer
+                            {currentCustomer ? "Update" : "Add New"}  Customer
                         </Typography>
                         <TextField
                             id="outlined-basic"

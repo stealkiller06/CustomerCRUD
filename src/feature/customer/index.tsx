@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useMemo, useRef, MutableRefObject } from 'react'
 import { Button } from '@material-ui/core'
 import type { NextPage } from 'next'
-import { DataGrid, GridApi, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { DataGrid, GridApi, GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-data-grid';
 import AddCustomer from './AddCustomer';
 import styles from './styles.module.css'
-import { Address, Customer } from '@api/customer/types/customerType';
+import { Customer } from '@api/customer/types/customerType';
 import { deleteCustomer, getCustomers } from '@api/customer/customerAPI';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveIcon from '@mui/icons-material/Delete';
@@ -73,6 +73,14 @@ const CustomerCrud: NextPage = () => {
             headerName: 'Last name',
             editable: true,
             width: 200
+
+        },
+        {
+            field: 'address',
+            headerName: 'Last Address added',
+            flex: 1,
+            valueGetter: getAddress,
+            sortComparator: (v1, v2) => v1!.toString().localeCompare(v2!.toString()),
 
         },
         {
@@ -145,7 +153,6 @@ const CustomerCrud: NextPage = () => {
                     columns={columns}
                     pageSize={10}
                     loading={loading}
-                    rowHeight={100}
                     rowsPerPageOptions={[10]}
                 />
             </div>
@@ -176,7 +183,13 @@ const CustomerCrud: NextPage = () => {
     )
 }
 
-
+function getAddress(params: GridValueGetterParams) {
+    const customer = params.row;
+    if (customer?.address?.length) {
+        return customer.address[customer.address.length - 1]?.address;
+    }
+    return "No address added";
+}
 
 export default CustomerCrud
 
